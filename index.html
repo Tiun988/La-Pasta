@@ -76,6 +76,24 @@
   .dish p { color: var(--muted); font-size: .96rem; margin-bottom: 14px; }
   .dish .quote { font-style: italic; color: var(--cream); border-left: 2px solid var(--gold); padding-left: 12px; font-size: .92rem; }
 
+  .menu-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+  .menu-tabs button { background: transparent; border: 1px solid rgba(201,162,75,.45); color: var(--gold-light); padding: 11px 22px; border-radius: 999px; cursor: pointer; font-size: .92rem; letter-spacing: .4px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 600; }
+  .menu-tabs button:hover { background: rgba(201,162,75,.12); }
+  .menu-tabs button.active { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #1a130b; border-color: transparent; }
+  .menu-cat { display: none; }
+  .menu-cat.active { display: block; }
+  .menu-note { text-align: center; color: var(--muted); font-style: italic; margin-bottom: 30px; }
+  .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; max-width: 960px; margin: 0 auto; }
+  .mi { padding: 14px 0; border-bottom: 1px solid rgba(201,162,75,.14); }
+  .mi-top { display: flex; align-items: baseline; gap: 10px; }
+  .mi-top h4 { font-size: 1.12rem; color: var(--cream); font-weight: 700; }
+  .mi-top .dots { flex: 1; border-bottom: 1px dotted rgba(201,162,75,.5); transform: translateY(-4px); }
+  .mi-top .pr { color: var(--gold-light); font-weight: 700; white-space: nowrap; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .mi p { color: var(--muted); font-size: .93rem; margin-top: 2px; }
+  .menu-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 960px; margin: 0 auto 40px; }
+  .menu-photos .ph { aspect-ratio: 16/10; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #3a2a18, #1e1712); border: 1px solid rgba(201,162,75,.22); }
+  .menu-photos .ph img { width: 100%; height: 100%; object-fit: cover; }
+
   .reviews { background: var(--bg2); border-top: 1px solid rgba(201,162,75,.18); border-bottom: 1px solid rgba(201,162,75,.18); }
   .rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .rev { background: var(--bg); border: 1px solid rgba(201,162,75,.22); border-radius: 16px; padding: 28px 26px; display: flex; flex-direction: column; }
@@ -100,6 +118,8 @@
 
   @media (max-width: 900px) {
     .usps, .dishes, .rev-grid { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .menu-photos { grid-template-columns: 1fr 1fr; }
     .visit { grid-template-columns: 1fr; }
     .nav-links a:not(.btn-sm) { display: none; }
     section { padding: 60px 0; }
@@ -112,7 +132,7 @@
   <div class="nav sans">
     <div class="brand">LA <em>PASTA</em><small>RISTORANTE · GRÜNSTADT</small></div>
     <div class="nav-links">
-      <a href="#speisen">Speisen</a>
+      <a href="#speisekarte">Speisekarte</a>
       <a href="#stimmen">Gästestimmen</a>
       <a href="#besuch">Besuch</a>
       <a href="#besuch" class="btn btn-sm">Tisch reservieren</a>
@@ -131,7 +151,7 @@
     <div class="stars sans">★★★★★ <span>von hunderten begeisterten Gästen</span></div>
     <div class="hero-cta sans">
       <a href="#besuch" class="btn">Tisch reservieren</a>
-      <a href="#speisen" class="btn-ghost">Speisen entdecken</a>
+      <a href="#speisekarte" class="btn-ghost">Speisekarte ansehen</a>
     </div>
     <div class="badges sans">
       <span class="badge">🍝 Frisch gekocht</span>
@@ -157,38 +177,110 @@
   </div>
 </section>
 
-<section id="speisen" style="padding-top:0;">
+<section id="speisekarte" style="padding-top:0;">
   <div class="wrap">
-    <div class="kicker sans">Unsere Signatures</div>
-    <h2>Gerichte, die <em>verführen.</em></h2>
-    <p class="sub">Von Tortellini alla Panna über Lasagne bis zum Insalata con Gamberetti — dazu hausgemachte Limonade und gekühlter Lambrusco.</p>
-    <div class="dishes">
-      <div class="dish">
-        <div class="ph"><img src="img/pasta.jpg" alt="Pasta ai Frutti di Mare" onerror="this.style.display='none'"></div>
-        <div class="tx">
-          <div class="cat sans">Pasta</div>
-          <h3>Pasta ai Frutti di Mare</h3>
-          <p>Spaghetti mit Garnelen, Muscheln, Kirschtomaten und Basilikum — frisch, aromatisch, unwiderstehlich.</p>
-          <div class="quote">„Die Pasta schmeckt fantastisch — immer frisch gekocht!" — Katharina B.</div>
-        </div>
+    <div class="kicker sans" style="text-align:center;">Speisekarte</div>
+    <h2 style="text-align:center;">Buon <em>appetito.</em></h2>
+    <p class="sub" style="text-align:center; margin-left:auto; margin-right:auto;">Alles frisch gekocht — von der klassischen Bolognese bis zum argentinisches Steak.</p>
+    <div class="menu-photos">
+      <div class="ph"><img src="img/pasta.jpg" alt="Frische Pasta" onerror="this.style.display='none'"></div>
+      <div class="ph"><img src="img/salat.jpg" alt="Frischer Salat" onerror="this.style.display='none'"></div>
+      <div class="ph"><img src="img/limonade.jpg" alt="Aperitivi" onerror="this.style.display='none'"></div>
+    </div>
+    <div class="menu-tabs sans">
+      <button class="active" onclick="showCat('pasta',this)">Pasta Tradizionale</button>
+      <button onclick="showCat('insalata',this)">Insalata</button>
+      <button onclick="showCat('spezial',this)">Pasta Spezialità</button>
+      <button onclick="showCat('carne',this)">Carne e Pesce</button>
+      <button onclick="showCat('dessert',this)">Desserts</button>
+      <button onclick="showCat('bar',this)">Cocktails &amp; Wein</button>
+    </div>
+
+    <div class="menu-cat active" id="cat-pasta">
+      <div class="menu-grid">
+        <div class="mi"><div class="mi-top"><h4>Spaghetti Ragù</h4><span class="dots"></span><span class="pr">11,90 €</span></div><p>Klassische Bolognese</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spaghetti Pomodoro</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Mit fruchtiger Tomatensoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spaghetti Carbonara</h4><span class="dots"></span><span class="pr">12,90 €</span></div><p>Mit Schinken und cremiger Ei-Sahne-Soße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spaghetti aglio, olio e peperoncino</h4><span class="dots"></span><span class="pr">11,90 €</span></div><p>Mit Knoblauch, Olivenöl und scharfer Peperoni</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spaghetti al Tonno e Cipolla</h4><span class="dots"></span><span class="pr">13,90 €</span></div><p>Mit Thunfisch und Zwiebeln</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spaghetti Pesto</h4><span class="dots"></span><span class="pr">11,90 €</span></div><p>Mit frischem Basilikum-Pesto</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spaghetti all'Arrabbiata</h4><span class="dots"></span><span class="pr">13,90 €</span></div><p>Pikant mit Tomaten, Zwiebel und scharfer Peperoni</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spaghetti Puttanesca</h4><span class="dots"></span><span class="pr">12,90 €</span></div><p>Mit Oliven, Kapern, Knoblauch und frischen Kräutern</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spaghetti alle Verdure</h4><span class="dots"></span><span class="pr">12,90 €</span></div><p>Mit frischem Gemüse</p></div>
+        <div class="mi"><div class="mi-top"><h4>Penne Gorgonzola</h4><span class="dots"></span><span class="pr">13,90 €</span></div><p>Cremige Gorgonzolasoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Penne Bongusto</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Mit Schinken, Pilzen, Erbsen und leichter Bolognese-Sahnesoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Penne Spinaci</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Mit Spinat und leichter Sahne</p></div>
+        <div class="mi"><div class="mi-top"><h4>Penne Quattro Formaggi</h4><span class="dots"></span><span class="pr">15,90 €</span></div><p>Mit vier Käsesorten</p></div>
+        <div class="mi"><div class="mi-top"><h4>Penne Broccoli</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Mit frischem Brokkoli und Knoblauch</p></div>
+        <div class="mi"><div class="mi-top"><h4>Tortellini alla Panna</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Mit Schinken-Sahne-Soße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Tortellini Ragù</h4><span class="dots"></span><span class="pr">12,90 €</span></div><p>Mit Bolognese</p></div>
+        <div class="mi"><div class="mi-top"><h4>Tortellini al Forno</h4><span class="dots"></span><span class="pr">12,90 €</span></div><p>Mit Bolognese-Sahne-Soße, überbacken</p></div>
+        <div class="mi"><div class="mi-top"><h4>Lasagne</h4><span class="dots"></span><span class="pr">12,90 €</span></div><p>Mit cremiger Bolognese-Sahnesoße und Mozzarella</p></div>
       </div>
-      <div class="dish">
-        <div class="ph"><img src="img/salat.jpg" alt="Insalata della Casa" onerror="this.style.display='none'"></div>
-        <div class="tx">
-          <div class="cat sans">Insalata</div>
-          <h3>Insalata della Casa</h3>
-          <p>Knackiger Salat mit Hähnchen, Feta, Oliven und cremigem Dressing — groß, frisch und sättigend.</p>
-          <div class="quote">„Tortellini alla Panna und Salat — leckeres Essen!" — S. M.</div>
-        </div>
+    </div>
+
+    <div class="menu-cat" id="cat-insalata">
+      <p class="menu-note">Alle Salate kommen nach Wahl mit Joghurt- oder Balsamico-Dressing.</p>
+      <div class="menu-grid">
+        <div class="mi"><div class="mi-top"><h4>Insalata con Crispy Chicken</h4><span class="dots"></span><span class="pr">14,90 €</span></div><p>Romanasalat mit knusprigem Hähnchen</p></div>
+        <div class="mi"><div class="mi-top"><h4>Insalata con Pollo e Parmigiano</h4><span class="dots"></span><span class="pr">13,90 €</span></div><p>Romanasalat mit Hähnchen, Croutons und Parmesan</p></div>
+        <div class="mi"><div class="mi-top"><h4>Insalata di Gamberi con Avocado</h4><span class="dots"></span><span class="pr">15,90 €</span></div><p>Romanasalat mit Garnelen und Avocado</p></div>
+        <div class="mi"><div class="mi-top"><h4>Insalata Frutti di Mare</h4><span class="dots"></span><span class="pr">17,90 €</span></div><p>Meeresfrüchtesalat</p></div>
+        <div class="mi"><div class="mi-top"><h4>Insalata con Tonno</h4><span class="dots"></span><span class="pr">16,90 €</span></div><p>Mit Thunfisch, Oliven und Ei</p></div>
+        <div class="mi"><div class="mi-top"><h4>Insalata Italiana</h4><span class="dots"></span><span class="pr">13,90 €</span></div><p>Romanasalat mit gekochtem Schinken, Mozzarella, Ei</p></div>
+        <div class="mi"><div class="mi-top"><h4>Insalata Mista</h4><span class="dots"></span><span class="pr">16,90 €</span></div><p>Kleiner Romanasalat als Beilage</p></div>
       </div>
-      <div class="dish">
-        <div class="ph"><img src="img/limonade.jpg" alt="Hausgemachte Limonade und Aperitivi" onerror="this.style.display='none'"></div>
-        <div class="tx">
-          <div class="cat sans">Bar</div>
-          <h3>Limonata &amp; Aperitivi</h3>
-          <p>Hausgemachte Limonade, Cocktails nach Wahl und gekühlter Lambrusco — italienische Musik inklusive.</p>
-          <div class="quote">„Auch die hausgemachte Limonade ist empfehlenswert!" — Katharina B.</div>
-        </div>
+    </div>
+
+    <div class="menu-cat" id="cat-spezial">
+      <div class="menu-grid">
+        <div class="mi"><div class="mi-top"><h4>Fettuccine Marinara</h4><span class="dots"></span><span class="pr">19,90 €</span></div><p>Bandnudeln mit Meeresfrüchten in Tomatensoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Fettuccine Carbonara alla Italiana</h4><span class="dots"></span><span class="pr">19,90 €</span></div><p>Mit Guanciale (gepökelte Schweinebacke) und Ei-Parmesansoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Tagliatelle con Gamberi e Zucchini</h4><span class="dots"></span><span class="pr">18,90 €</span></div><p>Mit Garnelen und Zucchini</p></div>
+        <div class="mi"><div class="mi-top"><h4>Tagliatelle con Salsiccia</h4><span class="dots"></span><span class="pr">20,90 €</span></div><p>Mit sizilianischer Wurst und frischen Kräutern</p></div>
+        <div class="mi"><div class="mi-top"><h4>Tagliatelle con Pollo e Zucchini</h4><span class="dots"></span><span class="pr">18,90 €</span></div><p>Mit Hähnchen und Zucchini</p></div>
+        <div class="mi"><div class="mi-top"><h4>Tagliatelle con Salmone</h4><span class="dots"></span><span class="pr">20,90 €</span></div><p>Mit Lachs in leichter Weißweinsoße</p></div>
+      </div>
+    </div>
+
+    <div class="menu-cat" id="cat-carne">
+      <p class="menu-note">Alle Hauptgerichte mit Brat- oder Rosmarinkartoffeln und kleinem Beilagesalat.</p>
+      <div class="menu-grid">
+        <div class="mi"><div class="mi-top"><h4>Scaloppina al Vino Bianco</h4><span class="dots"></span><span class="pr">23,90 €</span></div><p>Schweinefilet in Weißweinsoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Scaloppina Funghi Freschi</h4><span class="dots"></span><span class="pr">25,90 €</span></div><p>Schweinefilet mit frischen Champignons</p></div>
+        <div class="mi"><div class="mi-top"><h4>Scaloppina Limone</h4><span class="dots"></span><span class="pr">23,90 €</span></div><p>Schweinefilet in Zitronensoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Saltimbocca alla Romana</h4><span class="dots"></span><span class="pr">26,90 €</span></div><p>Schweinefilet mit Parmaschinken, Salbei in Weißweinsoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Petto di Pollo alla Griglia</h4><span class="dots"></span><span class="pr">23,90 €</span></div><p>Gegrillte Hähnchenbrust</p></div>
+        <div class="mi"><div class="mi-top"><h4>Pollo alle Verdure</h4><span class="dots"></span><span class="pr">25,90 €</span></div><p>Gegrillte Hähnchenbrust mit frischem Gemüse</p></div>
+        <div class="mi"><div class="mi-top"><h4>Bisteca Pepe Verde</h4><span class="dots"></span><span class="pr">29,90 €</span></div><p>Gegrilltes argentinisches Rinderhüftsteak in grüner Pfeffersoße</p></div>
+        <div class="mi"><div class="mi-top"><h4>Bistecca di Manzo</h4><span class="dots"></span><span class="pr">28,90 €</span></div><p>Gegrilltes argentinisches Rinderhüftsteak</p></div>
+        <div class="mi"><div class="mi-top"><h4>Salmone alla Griglia</h4><span class="dots"></span><span class="pr">27,90 €</span></div><p>Gegrilltes Lachsfilet</p></div>
+        <div class="mi"><div class="mi-top"><h4>Calamari alla Griglia</h4><span class="dots"></span><span class="pr">22,90 €</span></div><p>Gegrillte Calamari</p></div>
+      </div>
+    </div>
+
+    <div class="menu-cat" id="cat-dessert">
+      <p class="menu-note">Tagesaktuelle Desserts an der Bar einsehbar.</p>
+      <div class="menu-grid">
+        <div class="mi"><div class="mi-top"><h4>Tiramisù</h4><span class="dots"></span><span class="pr">6,90 €</span></div><p>Der italienische Klassiker</p></div>
+        <div class="mi"><div class="mi-top"><h4>Panna Cotta</h4><span class="dots"></span><span class="pr">6,90 €</span></div><p>Mit fruchtiger Soße</p></div>
+      </div>
+    </div>
+
+    <div class="menu-cat" id="cat-bar">
+      <div class="menu-grid">
+        <div class="mi"><div class="mi-top"><h4>Piña Colada</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Bacardi Blanca, Cocossirup, Ananassaft, Sahne</p></div>
+        <div class="mi"><div class="mi-top"><h4>Long Island Ice Tea</h4><span class="dots"></span><span class="pr">11,90 €</span></div><p>Bacardi Blanca, Vodka, Tequila Silver, Gin, Limettensaft, Orangensaft, Cola</p></div>
+        <div class="mi"><div class="mi-top"><h4>Red Kiss</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Vodka, Ananassaft, Grenadine, Cocossirup</p></div>
+        <div class="mi"><div class="mi-top"><h4>Mojito</h4><span class="dots"></span><span class="pr">11,90 €</span></div><p>Bacardi Blanca, Rohrzuckersirup, Limettensaft, Limette, Minzblätter, Sodawasser</p></div>
+        <div class="mi"><div class="mi-top"><h4>Tequila Sunrise</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Tequila Silver, Orangensaft, Limettensaft, Grenadine</p></div>
+        <div class="mi"><div class="mi-top"><h4>Espresso Martini</h4><span class="dots"></span><span class="pr">10,90 €</span></div><p>Vodka, Kaffeelikör, Espresso</p></div>
+        <div class="mi"><div class="mi-top"><h4>Lambrusco (0,25 L)</h4><span class="dots"></span><span class="pr">5,50 €</span></div><p>Auch als Schorle erhältlich</p></div>
+        <div class="mi"><div class="mi-top"><h4>Riesling (0,25 L)</h4><span class="dots"></span><span class="pr">5,50 €</span></div><p>Auch als Schorle erhältlich</p></div>
+        <div class="mi"><div class="mi-top"><h4>Primitivo (0,25 L)</h4><span class="dots"></span><span class="pr">5,50 €</span></div><p>Auch als Schorle erhältlich</p></div>
+        <div class="mi"><div class="mi-top"><h4>Weißburgunder (0,25 L)</h4><span class="dots"></span><span class="pr">6,50 €</span></div><p>Auch als Schorle erhältlich</p></div>
+        <div class="mi"><div class="mi-top"><h4>Chardonnay (0,25 L)</h4><span class="dots"></span><span class="pr">5,50 €</span></div><p>Auch als Schorle erhältlich</p></div>
+        <div class="mi"><div class="mi-top"><h4>Spätburgunder (0,25 L)</h4><span class="dots"></span><span class="pr">6,50 €</span></div><p>Auch als Schorle erhältlich</p></div>
       </div>
     </div>
   </div>
@@ -248,6 +340,15 @@
     <p style="margin-top:10px;">© La Pasta Grünstadt · Impressum · Datenschutz</p>
   </div>
 </footer>
+
+<script>
+  function showCat(id, btn) {
+    document.querySelectorAll('.menu-cat').forEach(function(c){ c.classList.remove('active'); });
+    document.getElementById('cat-' + id).classList.add('active');
+    document.querySelectorAll('.menu-tabs button').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+  }
+</script>
 
 </body>
 </html>
