@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Pasta · Italienisches Restaurant in Grünstadt</title>
+<meta name="description" content="La Pasta in der Fußgängerzone von Grünstadt: frische Pasta, große Portionen, herzlicher Service. Dolce Vita mitten in Grünstadt.">
+<style>
+  :root {
+    --bg: #14100c;
+    --bg2: #1e1712;
+    --cream: #f5ead9;
+    --gold: #c9a24b;
+    --gold-light: #e8c97a;
+    --muted: #b9a98f;
+    --card: #221a13;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, "Times New Roman", serif; background: var(--bg); color: var(--cream); line-height: 1.7; }
+  .sans, nav, .btn, .badge, .price, footer { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px; }
+  img { max-width: 100%; display: block; }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(20,16,12,.94); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(201,162,75,.25); }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; max-width: 1180px; margin: 0 auto; }
+  .brand { font-size: 1.5rem; letter-spacing: 3px; font-weight: 700; }
+  .brand em { color: var(--gold); font-style: normal; }
+  .brand small { display: block; font-size: .6rem; letter-spacing: 5px; color: var(--muted); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .nav-links a { color: var(--cream); text-decoration: none; margin-left: 26px; font-size: .92rem; letter-spacing: .5px; }
+  .nav-links a:hover { color: var(--gold-light); }
+  .btn { display: inline-block; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #1a130b; font-weight: 800; padding: 15px 36px; border-radius: 999px; text-decoration: none; letter-spacing: .5px; border: none; cursor: pointer; font-size: 1rem; }
+  .btn:hover { filter: brightness(1.08); }
+  .btn-ghost { display: inline-block; border: 1px solid var(--gold); color: var(--gold-light); font-weight: 700; padding: 14px 34px; border-radius: 999px; text-decoration: none; }
+  .btn-ghost:hover { background: rgba(201,162,75,.12); }
+  .btn-sm { padding: 10px 22px; font-size: .9rem; }
+
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: linear-gradient(120deg, #2a1c10, #14100c 70%); }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,12,.55), rgba(20,16,12,.25) 45%, var(--bg) 100%); }
+  .hero-inner { position: relative; z-index: 2; padding: 90px 0; }
+  .eyebrow { color: var(--gold-light); letter-spacing: 4px; font-size: .8rem; text-transform: uppercase; margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.08; margin-bottom: 20px; font-weight: 700; }
+  .hero h1 em { color: var(--gold-light); font-style: italic; }
+  .hero p.lead { font-size: 1.2rem; color: var(--cream); max-width: 560px; margin-bottom: 14px; }
+  .stars { color: var(--gold-light); letter-spacing: 3px; margin-bottom: 30px; font-size: 1.05rem; }
+  .stars span { color: var(--muted); letter-spacing: 0; font-size: .95rem; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+  .badge { border: 1px solid rgba(201,162,75,.4); border-radius: 999px; padding: 8px 18px; font-size: .82rem; color: var(--gold-light); letter-spacing: .4px; }
+
+  .strip { background: var(--gold); color: #1a130b; text-align: center; padding: 14px 18px; font-weight: 700; letter-spacing: .3px; }
+  .strip.sans { font-size: .95rem; }
+
+  section { padding: 84px 0; }
+  .kicker { color: var(--gold); letter-spacing: 4px; font-size: .78rem; text-transform: uppercase; margin-bottom: 12px; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin-bottom: 16px; line-height: 1.2; }
+  h2 em { color: var(--gold-light); font-style: italic; }
+  .sub { color: var(--muted); max-width: 640px; margin-bottom: 44px; font-size: 1.08rem; }
+
+  .usps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .usp { background: var(--card); border: 1px solid rgba(201,162,75,.22); border-radius: 16px; padding: 28px 24px; }
+  .usp .ic { font-size: 1.9rem; margin-bottom: 10px; }
+  .usp h3 { font-size: 1.1rem; margin-bottom: 6px; color: var(--gold-light); }
+  .usp p { font-size: .95rem; color: var(--muted); }
+
+  .dishes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .dish { background: var(--card); border-radius: 18px; overflow: hidden; border: 1px solid rgba(201,162,75,.22); }
+  .dish .ph { aspect-ratio: 4/3; background: linear-gradient(135deg, #3a2a18, #1e1712); overflow: hidden; }
+  .dish .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .dish:hover .ph img { transform: scale(1.05); }
+  .dish .tx { padding: 24px; }
+  .dish .tx .cat { font-size: .75rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+  .dish h3 { font-size: 1.35rem; margin: 8px 0 8px; }
+  .dish p { color: var(--muted); font-size: .96rem; margin-bottom: 14px; }
+  .dish .quote { font-style: italic; color: var(--cream); border-left: 2px solid var(--gold); padding-left: 12px; font-size: .92rem; }
+
+  .reviews { background: var(--bg2); border-top: 1px solid rgba(201,162,75,.18); border-bottom: 1px solid rgba(201,162,75,.18); }
+  .rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .rev { background: var(--bg); border: 1px solid rgba(201,162,75,.22); border-radius: 16px; padding: 28px 26px; display: flex; flex-direction: column; }
+  .rev .st { color: var(--gold-light); letter-spacing: 2px; margin-bottom: 12px; }
+  .rev p { font-style: italic; font-size: 1.02rem; flex: 1; }
+  .rev .who { margin-top: 18px; color: var(--gold); font-size: .9rem; letter-spacing: .5px; }
+  .rev .who span { color: var(--muted); }
+
+  .visit { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+  .visit-box { background: var(--card); border: 1px solid rgba(201,162,75,.25); border-radius: 18px; padding: 38px 34px; }
+  .visit-box h3 { color: var(--gold-light); margin-bottom: 14px; font-size: 1.4rem; }
+  .visit-box .row { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(201,162,75,.15); font-size: 1rem; }
+  .visit-box .row:last-child { border: none; }
+  .visit-box .row b { min-width: 150px; color: var(--cream); }
+
+  .cta-final { text-align: center; background: radial-gradient(ellipse at center, #2c2013 0%, var(--bg) 70%); border-top: 1px solid rgba(201,162,75,.18); }
+  .cta-final h2 { margin-bottom: 14px; }
+  .cta-final p { color: var(--muted); margin-bottom: 30px; font-size: 1.1rem; }
+
+  footer { border-top: 1px solid rgba(201,162,75,.2); padding: 36px 0; text-align: center; color: var(--muted); font-size: .88rem; }
+  footer .brand { margin-bottom: 8px; }
+
+  @media (max-width: 900px) {
+    .usps, .dishes, .rev-grid { grid-template-columns: 1fr; }
+    .visit { grid-template-columns: 1fr; }
+    .nav-links a:not(.btn-sm) { display: none; }
+    section { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav sans">
+    <div class="brand">LA <em>PASTA</em><small>RISTORANTE · GRÜNSTADT</small></div>
+    <div class="nav-links">
+      <a href="#speisen">Speisen</a>
+      <a href="#stimmen">Gästestimmen</a>
+      <a href="#besuch">Besuch</a>
+      <a href="#besuch" class="btn btn-sm">Tisch reservieren</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="padding:0;">
+  <div class="hero-bg">
+    <img src="img/pasta.jpg" alt="Frische Pasta bei La Pasta Grünstadt" onerror="this.style.display='none'">
+  </div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow sans">📍 Fußgängerzone · Grünstadt</div>
+    <h1>Dolce Vita,<br>serviert mit <em>Amore.</em></h1>
+    <p class="lead">Frische Pasta, große Portionen, ehrliche Preise — und ein Service, der dich wie Familie willkommen heißt. Der neue Italiener in Grünstadt, den alle lieben.</p>
+    <div class="stars sans">★★★★★ <span>von hunderten begeisterten Gästen</span></div>
+    <div class="hero-cta sans">
+      <a href="#besuch" class="btn">Tisch reservieren</a>
+      <a href="#speisen" class="btn-ghost">Speisen entdecken</a>
+    </div>
+    <div class="badges sans">
+      <span class="badge">🍝 Frisch gekocht</span>
+      <span class="badge">🍷 Lambrusco &amp; Cocktails</span>
+      <span class="badge">💶 10–30 € pro Person</span>
+    </div>
+  </div>
+</section>
+
+<div class="strip sans">✨ Neu in Grünstadt — „Die beste Pasta in Grünstadt" sagen unsere Gäste ✨</div>
+
+<section id="warum">
+  <div class="wrap">
+    <div class="kicker sans">Warum La Pasta</div>
+    <h2>Liebe auf den <em>ersten Bissen.</em></h2>
+    <p class="sub">Was unsere Gäste immer wieder sagen: Es schmeckt wie in Italien — frisch, großzügig und mit viel Herz gemacht.</p>
+    <div class="usps sans">
+      <div class="usp"><div class="ic">🍝</div><h3>Frisch &amp; hausgemacht</h3><p>„So habe ich noch nie Nudeln gegessen — einfach top!" Täglich frisch gekocht, mit viel Liebe zubereitet.</p></div>
+      <div class="usp"><div class="ic">🍽️</div><h3>Große Portionen</h3><p>„Riesige Portionen zum wirklich guten Preis." Hier wird niemand hungrig nach Hause gehen.</p></div>
+      <div class="usp"><div class="ic">🤍</div><h3>Herzlicher Service</h3><p>„Sehr liebevolle Bedienung, man fühlt sich sofort wohl." Aufmerksam, freundlich, familiär.</p></div>
+      <div class="usp"><div class="ic">📍</div><h3>Perfekte Lage</h3><p>Mitten in der Fußgängerzone von Grünstadt — ideal für Abendessen, Treffen und Dolce Vita.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="speisen" style="padding-top:0;">
+  <div class="wrap">
+    <div class="kicker sans">Unsere Signatures</div>
+    <h2>Gerichte, die <em>verführen.</em></h2>
+    <p class="sub">Von Tortellini alla Panna über Lasagne bis zum Insalata con Gamberetti — dazu hausgemachte Limonade und gekühlter Lambrusco.</p>
+    <div class="dishes">
+      <div class="dish">
+        <div class="ph"><img src="img/pasta.jpg" alt="Pasta ai Frutti di Mare" onerror="this.style.display='none'"></div>
+        <div class="tx">
+          <div class="cat sans">Pasta</div>
+          <h3>Pasta ai Frutti di Mare</h3>
+          <p>Spaghetti mit Garnelen, Muscheln, Kirschtomaten und Basilikum — frisch, aromatisch, unwiderstehlich.</p>
+          <div class="quote">„Die Pasta schmeckt fantastisch — immer frisch gekocht!" — Katharina B.</div>
+        </div>
+      </div>
+      <div class="dish">
+        <div class="ph"><img src="img/salat.jpg" alt="Insalata della Casa" onerror="this.style.display='none'"></div>
+        <div class="tx">
+          <div class="cat sans">Insalata</div>
+          <h3>Insalata della Casa</h3>
+          <p>Knackiger Salat mit Hähnchen, Feta, Oliven und cremigem Dressing — groß, frisch und sättigend.</p>
+          <div class="quote">„Tortellini alla Panna und Salat — leckeres Essen!" — S. M.</div>
+        </div>
+      </div>
+      <div class="dish">
+        <div class="ph"><img src="img/limonade.jpg" alt="Hausgemachte Limonade und Aperitivi" onerror="this.style.display='none'"></div>
+        <div class="tx">
+          <div class="cat sans">Bar</div>
+          <h3>Limonata &amp; Aperitivi</h3>
+          <p>Hausgemachte Limonade, Cocktails nach Wahl und gekühlter Lambrusco — italienische Musik inklusive.</p>
+          <div class="quote">„Auch die hausgemachte Limonade ist empfehlenswert!" — Katharina B.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="stimmen">
+  <div class="wrap">
+    <div class="kicker sans">Gästestimmen</div>
+    <h2>Grünstadt <em>liebt uns.</em></h2>
+    <p class="sub">Echte Stimmen unserer Gäste — 5 Sterne, immer wieder.</p>
+    <div class="rev-grid">
+      <div class="rev"><div class="st">★★★★★</div><p>„Die Pasta schmeckt fantastisch! Alle Gerichte waren sehr lecker und immer frisch gekocht. Große Portionen, gutes Preis-Leistungs-Verhältnis."</p><div class="who sans">Katharina B. <span>· Local Guide</span></div></div>
+      <div class="rev"><div class="st">★★★★★</div><p>„Das Essen schmeckt hervorragend, sehr frisch und mit viel Liebe zubereitet. Das Personal ist sehr zuvorkommend. Wir kommen auf jeden Fall wieder!"</p><div class="who sans">Christina S. <span>· Local Guide</span></div></div>
+      <div class="rev"><div class="st">★★★★★</div><p>„Einfach mega leckeres Essen, große Portion und wirklich guter Preis. Service sehr freundlich."</p><div class="who sans">Petra K. <span>· Local Guide</span></div></div>
+      <div class="rev"><div class="st">★★★★★</div><p>„So habe ich noch nie Nudeln gegessen! Einfach top!"</p><div class="who sans">Günter W. <span>· Local Guide</span></div></div>
+      <div class="rev"><div class="st">★★★★★</div><p>„Die beste Pasta in Grünstadt! Dolce Vita — einfach zum Genießen."</p><div class="who sans">Isabela &amp; Susanne <span>· Gäste</span></div></div>
+      <div class="rev"><div class="st">★★★★★</div><p>„Man hat gleich die gute Produktqualität geschmeckt. Die Preise sind sehr fair, die Bedienung sehr freundlich und aufmerksam."</p><div class="who sans">Karl Josef S. <span>· Local Guide</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="besuch">
+  <div class="wrap visit">
+    <div>
+      <div class="kicker sans">Besuch uns</div>
+      <h2>Mitten in <em>Grünstadt.</em></h2>
+      <p class="sub">Direkt in der Fußgängerzone — komm spontan vorbei oder reserviere deinen Tisch für einen perfekten italienischen Abend.</p>
+      <div class="sans" style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="tel:+496359000000" class="btn">📞 Tisch reservieren</a>
+        <a href="https://maps.google.com/?q=La+Pasta+Grünstadt" target="_blank" rel="noopener" class="btn-ghost">Route planen</a>
+      </div>
+    </div>
+    <div class="visit-box sans">
+      <h3>La Pasta · Grünstadt</h3>
+      <div class="row"><b>📍 Adresse</b><span>Fußgängerzone, Grünstadt</span></div>
+      <div class="row"><b>🕐 Öffnungszeiten</b><span>Täglich — siehe Google-Profil</span></div>
+      <div class="row"><b>💶 Preis</b><span>ca. 10–30 € pro Person</span></div>
+      <div class="row"><b>🍽️ Angebot</b><span>Essen im Restaurant &amp; Abholung</span></div>
+      <div class="row"><b>📞 Reservierung</b><span><a href="tel:+496359000000" style="color:var(--gold-light);">Bitte Rufnummer eintragen</a></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <div class="kicker sans">A presto</div>
+    <h2>Dein Tisch in Italien wartet — <em>mitten in Grünstadt.</em></h2>
+    <p>Reserviere jetzt und erlebe Pasta mit Herz und Seele.</p>
+    <a href="tel:+496359000000" class="btn sans">Jetzt Tisch sichern</a>
+  </div>
+</section>
+
+<footer class="sans">
+  <div class="wrap">
+    <div class="brand">LA <em>PASTA</em></div>
+    <p>Ristorante · Fußgängerzone Grünstadt · Pasta mit Herz und Seele</p>
+    <p style="margin-top:10px;">© La Pasta Grünstadt · Impressum · Datenschutz</p>
+  </div>
+</footer>
+
+</body>
+</html>
