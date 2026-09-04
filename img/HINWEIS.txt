@@ -1,0 +1,4 @@
+Fotos hier hochladen (Web: Add file > Upload files):
+- pasta.jpg (Meeresfruechte-Pasta)
+- salat.jpg (Salat)
+- limonade.jpg (Limonade/Aperitif)
